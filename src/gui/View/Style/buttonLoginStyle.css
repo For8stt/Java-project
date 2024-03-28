@@ -1,0 +1,81 @@
+.buttonLogin{
+    -fx-background-color: #590F08;
+    -fx-text-fill: white;
+    -fx-font-family:'Montserrat';
+    -fx-padding: 10px 20px;
+    -fx-font-size: 12px;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-background-radius: 8px;
+}
+.buttonLogin:hover{
+    -fx-background-color: #8C1C03;
+    -fx-font-size: 12px;
+}
+.buttonLogin:pressed{
+    -fx-background-color: #BF3604;
+    -fx-font-size: 12px;
+}
+.anchorPane {
+    -fx-background-color: #150926;
+    /*#150926  #7f51fd #0C0C0D*/
+}
+.Label{
+    -fx-text-fill: white;
+    -fx-font-family: 'Montserrat';
+}
+.radioButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-family: 'Montserrat';
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+    -fx-border-color:white;
+    -fx-border-radius: 5px;
+}
+
+.radioButton:selected {
+    -fx-border-color: #BF3604;
+    -fx-border-radius: 5px;
+}
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+.text-field:hover {
+    -fx-background-color: #CCCCCC;
+}
+.text-field:focused {
+    -fx-background-color: #E0E0E0;
+    -fx-border-color: #666666;
+}
+.buttonVotingPlace {
+    -fx-background-color: #590F08;
+    -fx-text-fill: white;
+    -fx-font-family:'Montserrat';
+    -fx-padding: 10px 20px;
+    -fx-font-size: 16px;
+    -fx-pref-width: 250px;
+    -fx-pref-height: 60px;
+    -fx-background-radius: 8px;
+}
+.buttonVotingPlace:hover{
+    -fx-background-color: #8C1C03;
+    -fx-font-size: 16px;
+}
+.buttonVotingPlace:pressed{
+    -fx-background-color: #BF3604;
+    -fx-font-size: 16px;
+}
+.anchorPaneVoting {
+    -fx-background-color: #a4014a;
+    -fx-border-color: #a40029;
+    -fx-border-width: 2;
+    -fx-background-radius: 0 0 30 0;
+    -fx-border-radius: 0 0 30 0;
+    /*#150926  #7f51fd #0C0C0D*/
+}
