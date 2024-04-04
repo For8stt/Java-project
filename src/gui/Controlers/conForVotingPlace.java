@@ -1,35 +1,32 @@
 package gui.Controlers;
 
-import UserPack.Host;
 import UserPack.VotingSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
 
 public class conForVotingPlace {
-    private Stage stage;
-    private Scene scene;
     private Parent root;
     @FXML
-    Label usernameLabel;
+    private Label usernameLabel;
     @FXML
-    Label rolLabel;
+    private Label rolLabel;
+    @FXML
+    private BorderPane votingPlaceBP;
 
     @FXML
-    Label passwordLabel;
+    private Label passwordLabel;
     @FXML
-    Button switchToEvaluation;
+    private Button switchToEvaluation;
     @FXML
-    Button switchToStatistics;
+    private Button switchToStatistics;
 
     private VotingSystem votingSystem;
     public void setVotingSystem(VotingSystem votingSystem) {
@@ -56,13 +53,6 @@ public class conForVotingPlace {
         switchToStatistics.setVisible(false);
     }
 
-//    public void switchToEvaluation(ActionEvent event)throws IOException{
-//        root= FXMLLoader.load(getClass().getResource("/gui/View/EvaluationOfEstablishments.fxml"));
-//        stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-//        scene=new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
 public void switchToEvaluation(ActionEvent event) throws IOException {
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/View/EvaluationOfEstablishments.fxml"));
@@ -72,19 +62,10 @@ public void switchToEvaluation(ActionEvent event) throws IOException {
     evaluationController.setVotingSystem(votingSystem);
     evaluationController.setChoiseBox();
 
-    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    scene = new Scene(root);
+    votingPlaceBP.setCenter(root);
 
-    stage.setScene(scene);
-    stage.show();
 }
-//    public void switchToOverview(ActionEvent event)throws IOException{
-//        root= FXMLLoader.load(getClass().getResource("/gui/View/OverviewOfEstablishment.fxml"));
-//        stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-//        scene=new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
+
 public void switchToOverview(ActionEvent event) throws IOException {
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/View/OverviewOfEstablishment.fxml"));
@@ -99,22 +80,11 @@ public void switchToOverview(ActionEvent event) throws IOException {
 
 
 
-//    overviewController.initialize(null,null);
-    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    scene = new Scene(root);
 
-    stage.setScene(scene);
-    stage.show();
+    votingPlaceBP.setCenter(root);
 
 }
 
-//    public void switchToLogin(ActionEvent event)throws IOException{
-//        root= FXMLLoader.load(getClass().getResource("/gui/View/login.fxml"));
-//        stage=(Stage) ((Node)event.getSource()).getScene().getWindow();
-//        scene=new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
 public void switchToLogin(ActionEvent event) throws IOException {
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/View/login.fxml"));
@@ -124,13 +94,9 @@ public void switchToLogin(ActionEvent event) throws IOException {
     loginController.setVotingSystem(votingSystem);
     loginController.SetUnvisiable();
 
-     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-     scene = new Scene(root);
-
-    stage.setScene(scene);
-    stage.show();
+    votingPlaceBP.setCenter(root);
 }
-///де помилка
+
     public void switchToStatistics(ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/View/statisticOfEstablishment.fxml"));
@@ -141,11 +107,6 @@ public void switchToLogin(ActionEvent event) throws IOException {
         statisticsController.SetBarChart();
         statisticsController.SetUnvisiable();
 
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-
-        stage.setScene(scene);
-        stage.show();
+        votingPlaceBP.setCenter(root);
     }
 }

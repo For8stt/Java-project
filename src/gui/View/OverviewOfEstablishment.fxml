@@ -5,25 +5,32 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controlers.ConOvrvOfEstab">
+<BorderPane fx:id="overviewBP" prefHeight="400.0" prefWidth="600.0" styleClass="borderPane" stylesheets="@Style/buttonLoginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controlers.ConOvrvOfEstab">
    <children>
-      <Label layoutX="133.0" layoutY="27.0" text="Overview of Establishment">
+
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchorPane" stylesheets="@Style/buttonLoginStyle.css">
+   <children>
+      <Label layoutX="133.0" layoutY="27.0" styleClass="Label" text="Overview of Establishment">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="ReturnTo" layoutX="126.0" layoutY="353.0" mnemonicParsing="false" onAction="#switchToVotingPlace" text="return" />
-      <TextArea fx:id="OverviewRest" layoutX="270.0" layoutY="100.0" prefHeight="239.0" prefWidth="260.0" />
-      <Button layoutX="83.0" layoutY="136.0" mnemonicParsing="false" onAction="#showInfRes" prefHeight="26.0" prefWidth="150.0" text="Show Information" />
+      <Button fx:id="ReturnTo" layoutX="36.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToVotingPlace" styleClass="buttonOverviewEValuation" text="return" />
+      <TextArea fx:id="OverviewRest" layoutX="270.0" layoutY="100.0" prefHeight="239.0" prefWidth="283.0" />
+      <Button layoutX="83.0" layoutY="146.0" mnemonicParsing="false" onAction="#showInfRes" prefHeight="26.0" prefWidth="150.0" styleClass="buttonOverviewEValuation" text="Show Information" />
       <ChoiceBox fx:id="myChoiseBox" layoutX="83.0" layoutY="100.0" prefWidth="150.0" />
-      <Label fx:id="myLabel" layoutX="320.0" layoutY="353.0" prefHeight="19.0" prefWidth="203.0">
+      <Label fx:id="myLabel" layoutX="320.0" layoutY="353.0" prefHeight="19.0" prefWidth="203.0" styleClass="Label">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="83.0" layoutY="174.0" mnemonicParsing="false" onAction="#showMenu" prefHeight="26.0" prefWidth="150.0" text="Show Menu" />
-      <Button fx:id="bShowBar" layoutX="83.0" layoutY="213.0" mnemonicParsing="false" onAction="#showBar" prefHeight="26.0" prefWidth="150.0" text="Show Bar" />
+      <Button layoutX="83.0" layoutY="194.0" mnemonicParsing="false" onAction="#showMenu" prefHeight="26.0" prefWidth="150.0" styleClass="buttonOverviewEValuation" text="Show Menu" />
+      <Button fx:id="bShowBar" layoutX="83.0" layoutY="243.0" mnemonicParsing="false" onAction="#showBar" prefHeight="26.0" prefWidth="150.0" styleClass="buttonOverviewEValuation" text="Show Bar" />
    </children>
-</AnchorPane>
+       </AnchorPane>
+
+   </children>
+</BorderPane>

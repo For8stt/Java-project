@@ -20,6 +20,10 @@
     -fx-background-color: #150926;
     /*#150926  #7f51fd #0C0C0D*/
 }
+.borderPane
+{
+    -fx-background-color: #150926;
+}
 .Label{
     -fx-text-fill: white;
     -fx-font-family: 'Montserrat';
@@ -78,4 +82,41 @@
     -fx-background-radius: 0 0 30 0;
     -fx-border-radius: 0 0 30 0;
     /*#150926  #7f51fd #0C0C0D*/
+}
+.buttonOverviewEValuation {
+    -fx-background-color: #590F08;
+    -fx-text-fill: white;
+    -fx-font-family:'Montserrat';
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 8px;
+}
+.buttonOverviewEValuation:hover{
+    -fx-background-color: #8C1C03;
+    -fx-font-size: 14px;
+}
+.buttonOverviewEValuation:pressed{
+    -fx-background-color: #BF3604;
+    -fx-font-size: 14px;
+}
+
+.buttonSLN {
+    -fx-background-color: #590F08;
+    -fx-text-fill: white;
+    -fx-font-family:'Montserrat';
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+    -fx-pref-width: 90px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 8px;
+}
+.buttonSLN:hover{
+    -fx-background-color: #8C1C03;
+    -fx-font-size: 14px;
+}
+.buttonSLN:pressed{
+    -fx-background-color: #BF3604;
+    -fx-font-size: 14px;
 }

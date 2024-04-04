@@ -3,10 +3,11 @@ package EstablishmentPack.OpisEstablishment;
 import EstablishmentPack.OpisEstablishment.CompasiteDish.Dish;
 import EstablishmentPack.OpisEstablishment.CompasiteDish.DishSquadSetup;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Menu {
+public class Menu implements Serializable {
 
     private String menu;
     private List<Dish> dishes;

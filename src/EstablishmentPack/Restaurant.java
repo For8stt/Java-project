@@ -1,14 +1,12 @@
 package EstablishmentPack;
 
 import EstablishmentPack.OpisEstablishment.Bar;
-import EstablishmentPack.OpisEstablishment.Menu;
 import EstablishmentPack.OpisEstablishment.Review;
-import gui.Controlers.ConOvrvOfEstab;
 
-public class Restaurant implements Establishment{
+import java.io.Serializable;
+
+public class Restaurant implements Establishment, Serializable {
     private String name;
-
-//    private float hodnota=0;
     private Review review;
     private Bar bar;
     public Restaurant(){
@@ -22,13 +20,7 @@ public class Restaurant implements Establishment{
     public void setHodnotaRew(float rating){
         review.setRating(rating);
     }
-//    public float getHodnota(){
-//        float roundedValue = Math.round(this.hodnota * 10) / 10.0f;
-//        return roundedValue;
-//    }
-//    public void setHodnota(float hodnota){
-//        this.hodnota=hodnota;
-//    }
+
     public String getNameRestaurant(){
         return this.name;
     }

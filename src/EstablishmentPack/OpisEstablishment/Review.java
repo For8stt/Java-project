@@ -1,6 +1,8 @@
 package EstablishmentPack.OpisEstablishment;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable {
     private float rating=0;
 //    public Review(){}
     public float getRating(){

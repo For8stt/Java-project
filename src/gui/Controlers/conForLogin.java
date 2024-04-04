@@ -6,11 +6,9 @@ import gui.GuiForProgram;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
@@ -18,25 +16,24 @@ public class conForLogin extends GuiForProgram  {
 
 
     @FXML
-    TextField nameTextField;
+    private TextField nameTextField;
     @FXML
-    TextField passwordTextField;
+    private TextField passwordTextField;
     @FXML
-    Label LabelError;
+    private Label LabelError;
+    @FXML
+    private BorderPane loginPane;
+    @FXML
+    private RadioButton rButton;
+    @FXML
+    private Label rReg;
+    @FXML
+    private Button butReg;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private RadioButton rExpert;
 
-    @FXML
-    RadioButton rButton;
-    @FXML
-    Label rReg;
-    @FXML
-    Button butReg;
-    @FXML
-    Button loginButton;
-    @FXML
-    RadioButton rExpert;
-
-    private Stage stage;
-    private Scene scene;
     private Parent root;
     private VotingSystem votingSystem;
     private  boolean expert;
@@ -60,12 +57,12 @@ public class conForLogin extends GuiForProgram  {
     public void radioRegister(ActionEvent event){
         if (rButton.isSelected()){
             rReg.setText("Registration");
-            loginButton.setVisible(false); // Робимо кнопку логіну невидимою
+            loginButton.setVisible(false);
             butReg.setVisible(true);
             rExpert.setVisible(true);
         }else {
             rReg.setText("");
-            loginButton.setVisible(true); // Робимо кнопку логіну видимою
+            loginButton.setVisible(true);
             butReg.setVisible(false);
             rExpert.setVisible(false);
         }
@@ -102,14 +99,9 @@ public class conForLogin extends GuiForProgram  {
         String password=passwordTextField.getText();
 
 
-//        VotingSystem vote=new VotingSystem();
-//        vote.creatingObjects();
         if (votingSystem.loginCheckHost(username,password)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/View/votingPlace1.fxml"));
             root=loader.load();
-
-
-
 
             conForVotingPlace conforVotingplace=loader.getController();
             conforVotingplace.setVotingSystem(votingSystem);
@@ -118,14 +110,9 @@ public class conForLogin extends GuiForProgram  {
 
             conforVotingplace.displayNamePassword(username,password,votingSystem.getHost().getRol());
 
-
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene= new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            loginPane.setCenter(root);
 
         }else if (votingSystem.loginCheck(username,password)){
-//        FXMLLoader loader = new FXMLLoader(conForLogin.class.getResource("view/votingPlace1.fxml"));
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/View/votingPlace1.fxml"));
         root=loader.load();
 
@@ -138,12 +125,7 @@ public class conForLogin extends GuiForProgram  {
 
 
         conforVotingplace.displayNamePassword(username,password,votingSystem.voterJe().getRol());
-
-
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene= new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        loginPane.setCenter(root);
 
         } else {
             nameTextField.clear();

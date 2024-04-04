@@ -6,23 +6,31 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controlers.ConEvltOfEstabl">
+<BorderPane fx:id="evaluationBP" prefHeight="400.0" prefWidth="600.0" styleClass="borderPane" stylesheets="@Style/buttonLoginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controlers.ConEvltOfEstabl">
+
+<children>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchorPane" stylesheets="@Style/buttonLoginStyle.css">
    <children>
-      <Label layoutX="138.0" layoutY="32.0" text="Evaluation of Establishment">
+      <Label layoutX="138.0" layoutY="32.0" styleClass="Label" text="Evaluation of Establishment">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="ReturnTo" layoutX="84.0" layoutY="77.0" mnemonicParsing="false" onAction="#switchToVotingPlace" text="Return" />
-      <Spinner fx:id="mySpinner" layoutX="311.0" layoutY="157.0" prefHeight="26.0" prefWidth="73.0" />
-      <Label fx:id="myLabel" layoutX="242.0" layoutY="162.0" text="Hodnota" />
-      <Label fx:id="SelectRest" layoutX="111.0" layoutY="162.0" text="______" />
-      <Button layoutX="112.0" layoutY="263.0" mnemonicParsing="false" onAction="#showHodnota" text="Select" />
-      <TextField fx:id="hodnotaRest" layoutX="242.0" layoutY="207.0" promptText="hodnota" />
-      <Button layoutX="274.0" layoutY="263.0" mnemonicParsing="false" onAction="#newHodnota" text="Take Hodnota" />
-      <ChoiceBox fx:id="restauraciaJe" layoutX="51.0" layoutY="207.0" prefWidth="150.0" />
-      <Label fx:id="ciUrobil" layoutX="306.0" layoutY="240.0" />
+      <Button fx:id="ReturnTo" layoutX="34.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToVotingPlace" styleClass="buttonOverviewEValuation" text="Return" />
+      <Spinner fx:id="mySpinner" layoutX="311.0" layoutY="115.0" prefHeight="26.0" prefWidth="73.0" />
+      <Label fx:id="myLabel" layoutX="242.0" layoutY="115.0" styleClass="Label" text="Hodnota" />
+      <Label fx:id="SelectRest" layoutX="111.0" layoutY="115.0" styleClass="Label" text="______" />
+      <Button layoutX="50.0" layoutY="220.0" mnemonicParsing="false" onAction="#showHodnota" styleClass="buttonOverviewEValuation" text="Select" />
+      <TextField fx:id="hodnotaRest" layoutX="242.0" layoutY="160.0" promptText="hodnota" />
+      <Button layoutX="245.0" layoutY="220.0" mnemonicParsing="false" onAction="#newHodnota" styleClass="buttonOverviewEValuation" text="Take Hodnota" />
+      <ChoiceBox fx:id="restauraciaJe" layoutX="51.0" layoutY="160.0" prefWidth="150.0" />
+      <Label fx:id="ciUrobil" layoutX="306.0" layoutY="200.0" styleClass="Label" />
    </children>
 </AnchorPane>
+
+</children>
+</BorderPane>

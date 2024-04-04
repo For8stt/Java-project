@@ -7,19 +7,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ConEvltOfEstabl implements Initializable {
-    private Stage stage;
-    private Scene scene;
     private Parent root;
     @FXML
     private ChoiceBox<String> restauraciaJe;
@@ -29,7 +25,8 @@ public class ConEvltOfEstabl implements Initializable {
     private TextField hodnotaRest;
     @FXML
     private Label ciUrobil;
-
+    @FXML
+    private BorderPane evaluationBP;
 
     @FXML
     private Spinner<Integer> mySpinner;
@@ -41,13 +38,6 @@ public class ConEvltOfEstabl implements Initializable {
         this.votingSystem = votingSystem;
     }
 
-//    public void switchToVotingPlace(ActionEvent event) throws IOException {
-//        root = FXMLLoader.load(getClass().getResource("/gui/View/votingPlace1.fxml"));
-//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
 public void switchToVotingPlace(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/View/votingPlace1.fxml"));
      root = loader.load();
@@ -58,11 +48,7 @@ public void switchToVotingPlace(ActionEvent event) throws IOException {
     votingPlace1Controller.akyUserJe(votingSystem.getAkyUser());
     votingPlace1Controller.setUnvisidbleVoter();
 
-     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-     scene = new Scene(root);
-
-    stage.setScene(scene);
-    stage.show();
+    evaluationBP.setCenter(root);
 }
 
     @Override
@@ -104,7 +90,6 @@ public void switchToVotingPlace(ActionEvent event) throws IOException {
         String selection = restauraciaJe.getValue();
         for (int i=0;i<votingSystem.getKolkoRest();i++) {
             if (votingSystem.getRestaurant(i).getNameRestaurant().equals(selection)) {
-//                hodnotaRest.setText("hodnota jeho je: "+votingSystem.getRestaurant(i).getHodnota());
                 hodnotaRest.setText("hodnota jeho je: "+votingSystem.getRestaurant(i).getHodnotaRew());
 
                 ciUrobil.setText("");
@@ -120,47 +105,55 @@ public void switchToVotingPlace(ActionEvent event) throws IOException {
         }
     }
     public void newHodnota(ActionEvent event)throws IOException{
-        int hodnota=mySpinner.getValue();
-        String selection = restauraciaJe.getValue();
-        boolean isCafe= votingSystem.isCafe(selection);
-
-        if (isCafe){
-            for (int i = 0; i < votingSystem.getKolkoCafes(); i++) {
-                if (votingSystem.hasVoted(votingSystem.getAkyUser(), i,isCafe)) {
-                    ciUrobil.setText("you have already voted ");
-                }
-                if (votingSystem.getCafe(i).getNameCafe().equals(selection)) {
-                    if (!(votingSystem.hasVoted(votingSystem.getAkyUser(), i,isCafe))) {
-                        ciUrobil.setText("evaluation accepted ");
-                    }
-                    float result = votingSystem.hodnoteRest(hodnota, votingSystem.getAkyUser(), i,isCafe);
-                    votingSystem.getCafe(i).setHodnotaRew(result);
-                    hodnotaRest.setText("hodnota jeho je: " + votingSystem.getCafe(i).getHodnotaRew());
-
-                }
-
-
+        try {
+            int hodnota = mySpinner.getValue();
+            String selection = restauraciaJe.getValue();
+            if (selection == null || selection.isEmpty()) {
+                throw new IllegalArgumentException("riadok je prazdny");
             }
-        }else {
-            for (int i = 0; i < votingSystem.getKolkoRest(); i++) {
-                if (votingSystem.hasVoted(votingSystem.getAkyUser(), i,isCafe)) {
-                    ciUrobil.setText("you have already voted ");
-                }
-                if (votingSystem.getRestaurant(i).getNameRestaurant().equals(selection)) {
-                    if (!(votingSystem.hasVoted(votingSystem.getAkyUser(), i,isCafe))) {
-                        ciUrobil.setText("evaluation accepted ");
+
+            boolean isCafe = votingSystem.isCafe(selection);
+            if (isCafe) {
+                for (int i = 0; i < votingSystem.getKolkoCafes(); i++) {
+                    if (votingSystem.hasVoted(votingSystem.getAkyUser(), i, isCafe)) {
+                        ciUrobil.setText("you have already voted ");
                     }
-                    float result = votingSystem.hodnoteRest(hodnota, votingSystem.getAkyUser(), i,isCafe);
-                    votingSystem.getRestaurant(i).setHodnotaRew(result);
-                    hodnotaRest.setText("hodnota jeho je: " + votingSystem.getRestaurant(i).getHodnotaRew());
+                    if (votingSystem.getCafe(i).getNameCafe().equals(selection)) {
+                        if (!(votingSystem.hasVoted(votingSystem.getAkyUser(), i, isCafe))) {
+                            ciUrobil.setText("evaluation accepted ");
+                        }
+                        float result = votingSystem.hodnoteRest(hodnota, votingSystem.getAkyUser(), i, isCafe);
+                        votingSystem.getCafe(i).setHodnotaRew(result);
+                        hodnotaRest.setText("hodnota jeho je: " + votingSystem.getCafe(i).getHodnotaRew());
 
-//                votingSystem.getRestaurant(i).setHodnota(result);
-//                hodnotaRest.setText("hodnota jeho je: "+votingSystem.getRestaurant(i).getHodnota());
+                    }
+
 
                 }
+            } else {
+                for (int i = 0; i < votingSystem.getKolkoRest(); i++) {
+                    if (votingSystem.hasVoted(votingSystem.getAkyUser(), i, isCafe)) {
+                        ciUrobil.setText("you have already voted ");
+                    }
+                    if (votingSystem.getRestaurant(i).getNameRestaurant().equals(selection)) {
+                        if (!(votingSystem.hasVoted(votingSystem.getAkyUser(), i, isCafe))) {
+                            ciUrobil.setText("evaluation accepted ");
+                        }
+                        float result = votingSystem.hodnoteRest(hodnota, votingSystem.getAkyUser(), i, isCafe);
+                        votingSystem.getRestaurant(i).setHodnotaRew(result);
+                        hodnotaRest.setText("hodnota jeho je: " + votingSystem.getRestaurant(i).getHodnotaRew());
+
+                    }
 
 
+                }
             }
+        }catch (IllegalArgumentException ex){
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            System.out.println(ex.getMessage());
+            a.setTitle("Error");
+            a.setContentText("You have to choose a restaurant.");
+            a.showAndWait();
         }
 
     }

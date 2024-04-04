@@ -5,7 +5,9 @@ import EstablishmentPack.OpisEstablishment.Bar;
 import EstablishmentPack.OpisEstablishment.Menu;
 import EstablishmentPack.OpisEstablishment.Review;
 
-public class Cafe implements Establishment {
+import java.io.Serializable;
+
+public class Cafe implements Establishment, Serializable {
     private String name;
     private Review review;
     private Menu menu;

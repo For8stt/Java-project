@@ -1,9 +1,10 @@
 package EstablishmentPack.OpisEstablishment.CompasiteDish;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Dish implements DishUnit{
+public class Dish implements DishUnit , Serializable {
     private String dishName;
     public Dish(String dishName){
         setDishName(dishName);

@@ -1,9 +1,8 @@
 package EstablishmentPack.Cafes;
 
-import EstablishmentPack.OpisEstablishment.Menu;
 
 public class LamaCafes extends Cafe{
-    private String menuu="LamaCafes and ramen";
+    private String mainDish="Andean Llama Salad";
 
     public LamaCafes(String name){
         setMenu("Llama Latte","Andean Llama Salad","Llama Quesadillas",
@@ -12,14 +11,28 @@ public class LamaCafes extends Cafe{
         setNameCafe(name);
         setRev();
     }
-    public String getCatCName(){
+    public String getLamaCName(){
         return this.getNameCafe();
     }
 
     @Override
     public String displayInfo() {
         String report="";
-        report= report+getCatCName()+"\n"+"bude infa pre Cafe (Maxim, nečítaj toto.)"+"\n"+this.menuu;
+        report= report+getLamaCName()+"\n"
+                +"-----------\n"
+                +"Location: Bratislava, Stepova Street 12\n"
+                +"-----------\n"
+                +"Concept: \"Lama Cafe is a unique place that\n" +
+                "combines the cozy atmosphere of a coffee \n" +
+                "shop with the fun of interacting with \n" +
+                "llamas. Here you can enjoy delicious coffee\n" +
+                "drinks and snacks, surrounded by\n" +
+                "friendly and cute llamas.\n"
+                +"-----------\n"
+                +"Opening hours: Open daily from 9:00 to 21:00.\n"
+                +"-----------\n"
+                +"Popular dish: "
+                +this.mainDish;
         return report;
     }
 }

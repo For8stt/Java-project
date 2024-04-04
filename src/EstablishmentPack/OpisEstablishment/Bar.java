@@ -1,6 +1,8 @@
 package EstablishmentPack.OpisEstablishment;
 
-public class Bar {
+import java.io.Serializable;
+
+public class Bar implements Serializable  {
     private String bar;
     private String drink1;
     private String drink2;

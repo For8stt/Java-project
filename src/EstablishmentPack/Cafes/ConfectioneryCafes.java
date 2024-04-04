@@ -1,9 +1,8 @@
 package EstablishmentPack.Cafes;
 
-import EstablishmentPack.OpisEstablishment.Menu;
 
 public class ConfectioneryCafes extends Cafe{
-    private String menuu="ConfectioneryCafes and ramen";
+    private String mainDish="Sweet Dream Waffles";
     public ConfectioneryCafes(String name){
         setMenu("Sweet Dream Waffles","Candyland Pancakes","Sugar Rush French Toast",
                 "Chocolate Chip Cookie Dough Cheesecake","Cotton Candy Frappuccino","Rainbow Cupcake Delight",
@@ -11,14 +10,27 @@ public class ConfectioneryCafes extends Cafe{
         setNameCafe(name);
         setRev();
     }
-    public String getCatCName(){
+    public String getConfecCName(){
         return this.getNameCafe();
     }
 
     @Override
     public String displayInfo() {
         String report="";
-        report= report+getCatCName()+"\n"+"bude infa pre Cafe (Maxim, nečítaj toto.)"+"\n"+this.menuu;
+        report= report+getConfecCName()+"\n"
+                +"-----------\n"
+                +"Location: Bratislava, 5 Pekarska Street\n"
+                +"-----------\n"
+                +"Concept: Confectionery Cafes is a coffee shop\n" +
+                "that specializes in confectionery and \n" +
+                "sweet dishes. Thanks to unique recipes and\n" +
+                "exquisite ingredients, you can enjoy the most\n" +
+                "delicious desserts and pastries here.\n"
+                +"-----------\n"
+                +"Opening hours: Open on weekdays\n from 8:00 to 20:00\n"
+                +"-----------\n"
+                +"Popular dish: "
+                +this.mainDish;
         return report;
     }
 }

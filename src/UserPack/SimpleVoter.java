@@ -10,7 +10,7 @@ public class SimpleVoter extends Voter{
         return "Voter";
     }
     public void setKoefHol(int koefHol){
-        super.koefHol=koefHol;
+        super.koefHol=koefHol*1;
     }
     public int getKoefHol(){
         return super.koefHol;
