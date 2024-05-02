@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -26,6 +27,14 @@
       <Label fx:id="SelectRest" layoutX="111.0" layoutY="115.0" styleClass="Label" text="______" />
       <Button layoutX="50.0" layoutY="220.0" mnemonicParsing="false" onAction="#showHodnota" styleClass="buttonOverviewEValuation" text="Select" />
       <TextField fx:id="hodnotaRest" layoutX="242.0" layoutY="160.0" promptText="hodnota" />
+      <TextField fx:id="middleVoiceRest" layoutX="430.0" layoutY="300.0" promptText="hodnota" />
+      <TextField fx:id="middleVoiceCafe" layoutX="430.0" layoutY="340.0" promptText="hodnota" />
+      <Label fx:id="middleVoiceRestLabel" layoutX="360.0" layoutY="305.0" styleClass="Label" text="Restaurant " />
+      <Label fx:id="middleVoiceCafeLabel" layoutX="390.0" layoutY="345.0" styleClass="Label" text="Cafe " />
+      <TextArea fx:id="middleVoiceAll" layoutX="450.0" layoutY="140.0" prefHeight="48.0" prefWidth="112.0" promptText="AOP is not connected" />
+      <Label fx:id="middleAll" layoutX="435.0" layoutY="123.0" styleClass="Label" text="Middle voice for all voters" AnchorPane.bottomAnchor="-140.0" />
+
+
       <Button layoutX="245.0" layoutY="220.0" mnemonicParsing="false" onAction="#newHodnota" styleClass="buttonOverviewEValuation" text="Take Hodnota" />
       <ChoiceBox fx:id="restauraciaJe" layoutX="51.0" layoutY="160.0" prefWidth="150.0" />
       <Label fx:id="ciUrobil" layoutX="306.0" layoutY="200.0" styleClass="Label" />

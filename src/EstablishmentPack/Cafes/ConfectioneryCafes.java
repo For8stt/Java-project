@@ -1,8 +1,14 @@
 package EstablishmentPack.Cafes;
 
-
+/**
+ * A subclass that extends the Cafe class and represents confectionery cafes.
+ */
 public class ConfectioneryCafes extends Cafe{
     private String mainDish="Sweet Dream Waffles";
+    /**
+     * Class constructor that sets the menu and overview for the confectionery cafe.
+     * @param name The name of the cafe.
+     */
     public ConfectioneryCafes(String name){
         setMenu("Sweet Dream Waffles","Candyland Pancakes","Sugar Rush French Toast",
                 "Chocolate Chip Cookie Dough Cheesecake","Cotton Candy Frappuccino","Rainbow Cupcake Delight",
@@ -10,10 +16,20 @@ public class ConfectioneryCafes extends Cafe{
         setNameCafe(name);
         setRev();
     }
+    /**
+     * Method to get the name of the confectionery cafe.
+     * @return Cafe name.
+     */
     public String getConfecCName(){
         return this.getNameCafe();
     }
 
+    /**
+     * The displayInfo() method is overridden, which returns information about the confectionery cafe.
+     * Overridden from the class it inherits {@link Cafe}
+     *
+     * @return A string with information about the confectionery cafe.
+     */
     @Override
     public String displayInfo() {
         String report="";

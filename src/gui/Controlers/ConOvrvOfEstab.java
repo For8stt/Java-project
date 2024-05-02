@@ -2,6 +2,8 @@ package gui.Controlers;
 
 
 import UserPack.VotingSystem;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,9 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
+/**
+ * Controller class for the Overview of Establishment view.
+ */
  public class ConOvrvOfEstab{
     private Parent root;
 
@@ -29,12 +34,24 @@ import java.io.IOException;
     private BorderPane overviewBP;
 
     private VotingSystem votingSystem;
+    /**
+     * Sets the VotingSystem instance.
+     * @param votingSystem The VotingSystem instance
+     */
     public void setVotingSystem(VotingSystem votingSystem) {
         this.votingSystem = votingSystem;
     }
+    /**
+     * Disables editing of the TextArea.
+     */
     public void setTextAreaNotWrite(){
         OverviewRest.setEditable(false);
     }
+    /**
+     * Switches to the voting place view.
+     * @param event The ActionEvent triggering the method
+     * @throws IOException If an error occurs during the process
+     */
     public void switchToVotingPlace(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/View/votingPlace1.fxml"));
          root = loader.load();
@@ -51,7 +68,10 @@ import java.io.IOException;
 
         overviewBP.setCenter(root);
     }
-
+    /**
+     * Sets the items of the ChoiceBox based on the restaurants and cafes in the system.
+     * @throws IOException If an error occurs during the process
+     */
 
     public void setChoiseBox()throws IOException {
 
@@ -64,6 +84,11 @@ import java.io.IOException;
 
         myChoiseBox.setOnAction(this::getFood);
     }
+    /**
+     * Displays the information of the selected restaurant or cafe.
+     * @param event The ActionEvent triggering the method
+     * @throws IOException If an error occurs during the process
+     */
     public void showInfRes(ActionEvent event)throws IOException{
         String selection = myChoiseBox.getValue();
 
@@ -78,6 +103,10 @@ import java.io.IOException;
             }
         }
     }
+    /**
+     * Gets the selected restaurant or cafe from the ChoiceBox.
+     * @param event The ActionEvent triggering the method
+     */
     public void getFood(ActionEvent event){
         String myFood= myChoiseBox.getValue();
         myLabel.setText(myFood);
@@ -91,6 +120,11 @@ import java.io.IOException;
             bShowBar.setVisible(false);
         }
     }
+    /**
+     * Displays the menu of the selected restaurant or cafe.
+     * @param event The ActionEvent triggering the method
+     * @throws IOException If an error occurs during the process
+     */
     public void showMenu(ActionEvent event)throws IOException{
         String selection = myChoiseBox.getValue();
 
@@ -105,15 +139,62 @@ import java.io.IOException;
             }
         }
     }
-    public void showBar(ActionEvent event)throws IOException{
-        String selection = myChoiseBox.getValue();
+//    public void showBar(ActionEvent event)throws IOException{
+//        String selection = myChoiseBox.getValue();
+//
+//        for (int i=0;i<votingSystem.getKolkoRest();i++) {
+//            if (votingSystem.getRestaurant(i).getNameRestaurant().equals(selection)) {
+//                OverviewRest.setText(votingSystem.getRestaurant(i).getBar());
+//            }
+//        }
+//    }
+//     public void showBar(ActionEvent event) {
+//         String selection = myChoiseBox.getValue();
+//
+//         Thread thread = new Thread(() -> {
+//             for (int i = 0; i < votingSystem.getKolkoRest(); i++) {
+//                 if (votingSystem.getRestaurant(i).getNameRestaurant().equals(selection)) {
+//                     String barInfo = votingSystem.getRestaurant(i).getBar();
+//
+//                     Platform.runLater(() -> OverviewRest.setText(barInfo));
+//
+//                     break;
+//                 }
+//             }
+//         });
+//
+//         thread.start();
+//     }
 
-        for (int i=0;i<votingSystem.getKolkoRest();i++) {
-            if (votingSystem.getRestaurant(i).getNameRestaurant().equals(selection)) {
-                OverviewRest.setText(votingSystem.getRestaurant(i).getBar());
-            }
-        }
-    }
-}
+
+    /**
+     * Displays the bar information of the selected restaurant.
+     * This method runs in a separate thread.
+     */
+     public void showBar(ActionEvent event) {
+         String selection = myChoiseBox.getValue();
+
+         Task<String> task = new Task<String>() {
+             @Override
+             protected String call() throws Exception {
+                 for (int i = 0; i < votingSystem.getKolkoRest(); i++) {
+                     if (votingSystem.getRestaurant(i).getNameRestaurant().equals(selection)) {
+                         return votingSystem.getRestaurant(i).getBar();
+                     }
+                 }
+                 return null;
+             }
+         };
+
+         task.setOnSucceeded(e -> {
+             String barInfo = task.getValue();
+             OverviewRest.setText(barInfo);
+         });
+
+         Thread thread = new Thread(task);
+         thread.start();
+     }
+
+ }
 
 

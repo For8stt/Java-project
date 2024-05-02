@@ -2,6 +2,7 @@ package gui.Controlers;
 
 
 import UserPack.VotingSystem;
+import UserPack.checkingForSymbols;
 import gui.GuiForProgram;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,14 +40,24 @@ public class conForLogin extends GuiForProgram  {
     private  boolean expert;
 
 
-
+    /**
+     * Sets the VotingSystem instance.
+     * @param votingSystem The VotingSystem instance
+     */
     public void setVotingSystem(VotingSystem votingSystem) {
         this.votingSystem = votingSystem;
     }
+    /**
+     * Sets the visibility of registration-related components.
+     */
     public void SetUnvisiable(){
         butReg.setVisible(false);
         rExpert.setVisible(false);
     }
+    /**
+     * Handles the expert mode selection.
+     * @param event The ActionEvent triggering the method
+     */
     public void radioExpert(ActionEvent event){
         if (rExpert.isSelected()){
             expert =true;
@@ -54,6 +65,10 @@ public class conForLogin extends GuiForProgram  {
             expert=false;
         }
     }
+    /**
+     * Handles the registration mode selection.
+     * @param event The ActionEvent triggering the method
+     */
     public void radioRegister(ActionEvent event){
         if (rButton.isSelected()){
             rReg.setText("Registration");
@@ -68,6 +83,11 @@ public class conForLogin extends GuiForProgram  {
         }
         LabelError.setText("");
     }
+    /**
+     * Handles the registration process.
+     * @param event The ActionEvent triggering the method
+     * @throws IOException If an error occurs during the process
+     */
     public void registretion(ActionEvent event)throws IOException{
         try {
             String username = nameTextField.getText();
@@ -75,6 +95,7 @@ public class conForLogin extends GuiForProgram  {
             if (username.isEmpty() || password.isEmpty()) {
                 throw new IllegalArgumentException("riadok je empty");
             }
+            votingSystem.CheckRightPaseord(password);
             boolean ciJeUser = votingSystem.registrationCrtUsr(username, password, expert);
             if (ciJeUser) {
                 LabelError.setText("you are registrated");
@@ -90,9 +111,19 @@ public class conForLogin extends GuiForProgram  {
             a.setTitle("Error");
             a.setContentText("All fields must have values.");
             a.showAndWait();
+        } catch (checkingForSymbols e) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Error");
+            a.setContentText("You must have at least one letter in your password!");
+            a.showAndWait();
         }
     }
 
+    /**
+     * Handles the login process.
+     * @param event The ActionEvent triggering the method
+     * @throws IOException If an error occurs during the process
+     */
     public void login(ActionEvent event) throws IOException {
 
         String username=nameTextField.getText();

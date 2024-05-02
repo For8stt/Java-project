@@ -1,8 +1,15 @@
 package EstablishmentPack.Cafes;
 
-
+/**
+ * A subclass that extends the Cafe class
+ */
 public class CatCafes extends Cafe{
     private String mainDishCatCafes="Tiramisu";
+
+    /**
+     * A class constructor that sets the menu and grade overview for a cafe with cats
+     * @param name The name of the cafe which will be called this cafe
+     */
     public CatCafes(String name){
         setMenu("Chocolate lava cake","Cheesecake","Tiramisu",
                 "Apple pie","Red velvet cake","Fruit tart",
@@ -10,11 +17,22 @@ public class CatCafes extends Cafe{
         setNameCafe(name);
         setRev();
     }
+
+    /**
+     * Method for getting a name for a cafe with cats
+     * @return Name of the cafe
+     */
     public String getCatCName(){
         return this.getNameCafe();
     }
 
 
+    /**
+     * Overridden displayInfo() method that returns information about a cafe with cats
+     * Overridden from the class it inherits {@link Cafe}
+     *
+     * @return A line with information about a cafe with cats
+     */
     @Override
     public String displayInfo() {
         String report="";

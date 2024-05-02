@@ -1,5 +1,7 @@
 package gui.Controlers;
 
+import UserPack.Strategy.calculateMidleVoiceCafe;
+import UserPack.Strategy.calculateMidleVoiceRest;
 import UserPack.VotingSystem;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,6 +17,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the establishment evaluation view.
+ */
 public class ConEvltOfEstabl implements Initializable {
     private Parent root;
     @FXML
@@ -24,6 +29,10 @@ public class ConEvltOfEstabl implements Initializable {
     @FXML
     private TextField hodnotaRest;
     @FXML
+    private TextField middleVoiceRest;
+    @FXML
+    private TextField middleVoiceCafe;
+    @FXML
     private Label ciUrobil;
     @FXML
     private BorderPane evaluationBP;
@@ -32,12 +41,34 @@ public class ConEvltOfEstabl implements Initializable {
     private Spinner<Integer> mySpinner;
     @FXML
     private Label myLabel;
+    @FXML
+    private TextArea middleVoiceAll;
+
+
+
     int currentValue;
     private VotingSystem votingSystem;
+    /**
+     * Sets the VotingSystem instance.
+     * @param votingSystem The VotingSystem instance
+     */
     public void setVotingSystem(VotingSystem votingSystem) {
         this.votingSystem = votingSystem;
     }
-
+    /**
+     * Sets the text in the TextArea for displaying middle voices for both restaurants and cafes.
+     * @param text1 Text for restaurants
+     * @param text2 Text for cafes
+     */
+    public void setTextmiddleVoiceAll(String text1, String text2){
+        middleVoiceAll.setText("Rest: "+text1+"\n"+"Cafe: "+text2);
+        middleVoiceAll.setEditable(false);
+    }
+    /**
+     * Switches to the voting place view.
+     * @param event The ActionEvent triggering the method
+     * @throws IOException If an error occurs during loading the FXML file
+     */
 public void switchToVotingPlace(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/View/votingPlace1.fxml"));
      root = loader.load();
@@ -50,6 +81,11 @@ public void switchToVotingPlace(ActionEvent event) throws IOException {
 
     evaluationBP.setCenter(root);
 }
+    /**
+     * Initializes the Spinner and sets its value factory.
+     * @param url The location used to resolve relative paths for the root object
+     * @param resourceBundle The resources used to localize the root object
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,6 +108,10 @@ public void switchToVotingPlace(ActionEvent event) throws IOException {
     }
 
 
+    /**
+     * Sets the items in the ChoiceBox.
+     * @throws IOException If an error occurs during the process
+     */
     public void setChoiseBox()throws IOException{
         for (int i=0;i<votingSystem.getKolkoRest();i++){
             restauraciaJe.getItems().add(votingSystem.getRestaurant(i).getNameRestaurant());
@@ -82,10 +122,19 @@ public void switchToVotingPlace(ActionEvent event) throws IOException {
 
         restauraciaJe.setOnAction(this::getRestName);
     }
+    /**
+     * Gets the name of the selected restaurant/cafe.
+     * @param event The ActionEvent triggering the method
+     */
     public void getRestName(ActionEvent event){
         String nameRest=restauraciaJe.getValue();
         SelectRest.setText(nameRest);
     }
+    /**
+     * Shows the rating of the selected restaurant/cafe.
+     * @param event The ActionEvent triggering the method
+     * @throws IOException If an error occurs during the process
+     */
     public void showHodnota(ActionEvent event)throws IOException{
         String selection = restauraciaJe.getValue();
         for (int i=0;i<votingSystem.getKolkoRest();i++) {
@@ -104,6 +153,11 @@ public void switchToVotingPlace(ActionEvent event) throws IOException {
             }
         }
     }
+    /**
+     * Sets a new rating for the selected restaurant/cafe.
+     * @param event The ActionEvent triggering the method
+     * @throws IOException If an error occurs during the process
+     */
     public void newHodnota(ActionEvent event)throws IOException{
         try {
             int hodnota = mySpinner.getValue();
@@ -112,7 +166,11 @@ public void switchToVotingPlace(ActionEvent event) throws IOException {
                 throw new IllegalArgumentException("riadok je prazdny");
             }
 
+
             boolean isCafe = votingSystem.isCafe(selection);
+
+
+
             if (isCafe) {
                 for (int i = 0; i < votingSystem.getKolkoCafes(); i++) {
                     if (votingSystem.hasVoted(votingSystem.getAkyUser(), i, isCafe)) {
@@ -147,6 +205,17 @@ public void switchToVotingPlace(ActionEvent event) throws IOException {
 
 
                 }
+            }
+            if (isCafe){
+                votingSystem.setcalculatVoice(new calculateMidleVoiceCafe(),votingSystem.getAkyUser());
+//                middleVoiceCafe.setText("your middle voice: "+ votingSystem.getVoter(votingSystem.getAkyUser()).getMiddleVoiceCafe());
+                middleVoiceCafe.setText("your middle voice: "+ votingSystem.getVoter(votingSystem.getAkyUser()).getMiddleVoiceAgr().getMiddleVoiceCafe());
+
+            }else {
+                votingSystem.setcalculatVoice(new calculateMidleVoiceRest(),votingSystem.getAkyUser());
+
+                middleVoiceRest.setText("your middle voice: "+ votingSystem.getVoter(votingSystem.getAkyUser()).getMiddleVoiceAgr().getMiddleVoiceRest());
+//                middleVoiceRest.setText("your middle voice: "+ votingSystem.getVoter(votingSystem.getAkyUser()).getMiddleVoiceRest());
             }
         }catch (IllegalArgumentException ex){
             Alert a = new Alert(Alert.AlertType.ERROR);

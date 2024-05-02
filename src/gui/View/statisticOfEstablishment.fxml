@@ -24,8 +24,11 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <Button layoutX="38.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToVotingPlace" styleClass="buttonOverviewEValuation" text="Return" />
-      <RadioButton fx:id="rChange" layoutX="20.0" layoutY="220.0" mnemonicParsing="false" onAction="#rStatisticsChange" styleClass="radioButton" text="Statistics Change" />
+       <TextArea fx:id="middleVoiceAll" layoutX="380.0" layoutY="280.0" prefHeight="48.0" prefWidth="112.0" promptText="AOP is not connected" />
+       <Label fx:id="middleAll" layoutX="300.0" layoutY="295.0" styleClass="Label" text="Middle voice:" AnchorPane.bottomAnchor="-312.0" />
+
+       <Button layoutX="38.0" layoutY="333.0" mnemonicParsing="false" onAction="#switchToVotingPlace" styleClass="buttonOverviewEValuation" text="Return" />
+      <RadioButton fx:id="rChange" layoutX="20.0" layoutY="225.0" mnemonicParsing="false" onAction="#rStatisticsChange" styleClass="radioButton" text="Statistics Change" />
       <TextArea fx:id="statisticasVoters" layoutX="258.0" layoutY="77.0" prefHeight="198.0" prefWidth="237.0" />
             <Button layoutX="20.0" layoutY="31.0" mnemonicParsing="false" onAction="#saveButt" styleClass="buttonSLN" text="Save" />
             <Button layoutX="20.0" layoutY="143.0" mnemonicParsing="false" onAction="#loadButt" styleClass="buttonSLN" text="Load" />

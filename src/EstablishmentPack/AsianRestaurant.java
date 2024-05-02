@@ -2,24 +2,48 @@ package EstablishmentPack;
 
 
 import EstablishmentPack.OpisEstablishment.Menu;
-
+/**
+ * A subclass that extends the {@link Restaurant} class and represents Asian restaurants.
+ * Asian restaurants offer a variety of dishes from different Asian countries.
+ */
 public class AsianRestaurant extends Restaurant{
     private String mainDish="Sushi California";
     private Menu menu;
+    /**
+     * Constructor for the AsianRestaurant class, which sets up the menu and review for the Asian restaurant.
+     * {@link Menu} is an aggregation of this class and is stored in this class
+     * {@link EstablishmentPack.OpisEstablishment.Bar} is an aggregation of this class and is stored in the parent class
+     * {@link EstablishmentPack.OpisEstablishment.Review} is a composition of this class
+     *
+     * @param name The name of the restaurant.
+     */
     public AsianRestaurant(String name){
-        menu=new Menu( "tom iam","tom iam","sashlyk",
-                "california","nagiri","borsh",
-                "Noodles with chicken","Noodles with beef","borsh2.0");
+        menu=new Menu( "Tom iam","Tangyuan","Noodles with chicken",
+                "California","Nagiri","Noodles with beef",
+                "Mango Sticky Rice","Bamboo Shoot Strips","Lychee with Ice Cream");
         setNameRestaurant(name);
         setBar("Sake","Soju","Shochu");
         setRev();
     }
+    /**
+     * Method to get the name of the Asian restaurant.
+     * @return The name of the restaurant.
+     */
     public String getAsianName(){
         return this.getNameRestaurant();
     }
+    /**
+     * Overridden method {@inheritDoc} that returns the menu of the Asian restaurant.
+     * @return A string with the restaurant's menu.
+     */
+    @Override
     public String getMenuRes(){
         return menu.showMenu();
     }
+    /**
+     * Overridden method {@inheritDoc} that returns information about the Asian restaurant.
+     * @return A string with information about the restaurant.
+     */
     @Override
     public String displayInfo() {
         String report="";
