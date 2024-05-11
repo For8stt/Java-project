@@ -11,6 +11,8 @@ import javafx.scene.control.Alert;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -175,6 +177,7 @@ public class VotingSystem implements Serializable {
      * Sets up the necessary data structures and creates users, hosts, restaurants, and cafes.
      * {@code for (int i = 0; i < kolkoUser; i++)}  Creating users, restaurants, and cafes
      * Finally, I have a function to sort cafes and restaurants by their name {@link #sortRestaurantsAndCafesByName()}
+     * and a function that uses <T>  {@link #sortBy(List, Comparator)}
      */
     public void creatingObjects(){
         kolkoUser=3;
@@ -232,6 +235,7 @@ public class VotingSystem implements Serializable {
             }
         }
         sortRestaurantsAndCafesByName();
+        sortBy(voters, Comparator.comparing(Voter::getUsername));
     }
     /**
      * Sorts the restaurants and cafes by name.
@@ -241,6 +245,19 @@ public class VotingSystem implements Serializable {
         Arrays.sort(restaurants, (r1, r2) -> r1.getNameRestaurant().compareToIgnoreCase(r2.getNameRestaurant()));
 
         Arrays.sort(cafes, (c1, c2) -> c1.getNameCafe().compareToIgnoreCase(c2.getNameCafe()));
+    }
+    /**
+     * Sorts the list using the specified comparator.
+     *  This method provides flexibility in sorting lists of different types of
+     *  objects by different comparison criteria.
+     *
+     * @param list the list to be sorted
+     * @param comparator a comparator that determines the order of items in the list
+     *                  (use {@link java.util.Comparator} to create comparators)
+     * @param <T> type of items in the list
+     */
+    public <T> void sortBy(List<T> list, Comparator<? super T> comparator) {
+        list.sort(comparator);
     }
     /**
      * Registers a new user in the system.

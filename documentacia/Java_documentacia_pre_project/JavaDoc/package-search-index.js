@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"EstablishmentPack"},{"l":"EstablishmentPack.Cafes"},{"l":"EstablishmentPack.OpisEstablishment"},{"l":"EstablishmentPack.OpisEstablishment.CompasiteDish"},{"l":"gui"},{"l":"gui.Controlers"},{"l":"UserPack"},{"l":"UserPack.Observer"},{"l":"UserPack.Strategy"}];updateSearchResults();

@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Serialization is used {@link Serializable}
  * imitates the class {@link User}
  */
-public class Voter   extends User implements  Serializable {
+public class Voter  extends User implements  Serializable {
 
     protected middleVoiceAgr middleVoiceAgr;
    protected int koefHol=1;
