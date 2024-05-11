@@ -588,7 +588,7 @@ public class VotingSystem implements Serializable {
     /**
      * Sets the calculation strategy for the average voting.
      * @param strategy The strategy to be used for calculation.
-     * @param u The number of user.
+     * @param u The number of users.
      */
     public void setcalculatVoice(middleVoiceStrategy strategy,int u){
         strategy.calculateMidleVoice(this,u);
